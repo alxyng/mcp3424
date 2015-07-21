@@ -72,6 +72,7 @@ unsigned int mcp3424_get_raw(mcp3424 *m, enum mcp3424_channel channel) {
 
 	mcp3424_set_channel(m, channel);
 
+	// if one shot, write ready bit to start new conversion on mcp3424
 	if (mcp3424_get_conversion_mode(m) == MCP3424_CONVERSION_MODE_ONE_SHOT) {
 		m->config |= (1 << 7);
 	}
