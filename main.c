@@ -39,9 +39,9 @@ int main(int argc, char const **argv) {
 		exit(EXIT_FAILURE);
 	}
 
-	mcp3424_init(&j2, fd, 0x68, MCP3424_BIT_RATE_18);
+	mcp3424_init(&j2, fd, 0x68, MCP3424_RESOLUTION_14);
 	mcp3424_set_conversion_mode(&j2, MCP3424_CONVERSION_MODE_CONTINUOUS);
-	mcp3424_init(&j3, fd, 0x69, MCP3424_BIT_RATE_18);
+	mcp3424_init(&j3, fd, 0x69, MCP3424_RESOLUTION_14);
 	mcp3424_set_conversion_mode(&j3, MCP3424_CONVERSION_MODE_CONTINUOUS);
 
 	while (1) {
@@ -53,7 +53,7 @@ int main(int argc, char const **argv) {
 				close(fd);
 				exit(EXIT_FAILURE);
 			}
-			v[i] = MAP(res[i], RAW_MIN, RAW_MAX_18, V_MIN, V_MAX);
+			v[i] = MAP(res[i], RAW_MIN, RAW_MAX_14, V_MIN, V_MAX);
 		}
 		for (i = 0; i < 4; i++) {
 			res[i + 4] = mcp3424_get_raw(&j3, channels[i]);
@@ -62,7 +62,7 @@ int main(int argc, char const **argv) {
 				close(fd);
 				exit(EXIT_FAILURE);
 			}
-			v[i + 4] = MAP(res[i + 4], RAW_MIN, RAW_MAX_18, V_MIN, V_MAX);
+			v[i + 4] = MAP(res[i + 4], RAW_MIN, RAW_MAX_14, V_MIN, V_MAX);
 		}
 
 		for (i = 0; i < 8; i++) {

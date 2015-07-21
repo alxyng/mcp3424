@@ -15,13 +15,6 @@ enum mcp3424_channel {
 	MCP3424_CHANNEL_4
 };
 
-enum mcp3424_bit_rate {
-	MCP3424_BIT_RATE_12,
-	MCP3424_BIT_RATE_14,
-	MCP3424_BIT_RATE_16,
-	MCP3424_BIT_RATE_18
-};
-
 enum mcp3424_conversion_mode {
 	MCP3424_CONVERSION_MODE_ONE_SHOT,
 	MCP3424_CONVERSION_MODE_CONTINUOUS
@@ -34,6 +27,13 @@ enum mcp3424_pga {
 	MCP3424_PGA_8X
 };
 
+enum mcp3424_resolution {
+	MCP3424_RESOLUTION_12,
+	MCP3424_RESOLUTION_14,
+	MCP3424_RESOLUTION_16,
+	MCP3424_RESOLUTION_18
+};
+
 typedef struct {
 	int fd;
 	uint8_t addr;
@@ -42,15 +42,15 @@ typedef struct {
 	char errstr[MCP3424_ERR_LEN];
 } mcp3424;
 
-void mcp3424_init(mcp3424 *m, int fd, uint8_t addr, enum mcp3424_bit_rate rate);
+void mcp3424_init(mcp3424 *m, int fd, uint8_t addr, enum mcp3424_resolution res);
 
-void mcp3424_set_bit_rate(mcp3424 *m, enum mcp3424_bit_rate rate);
 void mcp3424_set_conversion_mode(mcp3424 *m, enum mcp3424_conversion_mode mode);
 void mcp3424_set_pga(mcp3424 *m, enum mcp3424_pga pga);
+void mcp3424_set_resolution(mcp3424 *m, enum mcp3424_resolution res);
 
-enum mcp3424_bit_rate mcp3424_get_bit_rate(mcp3424 *m);
 enum mcp3424_conversion_mode mcp3424_get_conversion_mode(mcp3424 *m);
 enum mcp3424_pga mcp3424_get_pga(mcp3424 *m);
+enum mcp3424_resolution mcp3424_get_resolution(mcp3424 *m);
 
 unsigned int mcp3424_get_raw(mcp3424 *m, enum mcp3424_channel channel);
 
