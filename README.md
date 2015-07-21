@@ -2,6 +2,14 @@
 
 Linux userspace I2C module for the MCP3424 ADC. Code was originally ported from the code found [here](https://github.com/abelectronicsuk/ABElectronics_Python3_Libraries/tree/master/ADCPi). This has been used with ABElectronics' ADC Pi and ADC Pi Plus. See [main.c](main.c) for an example of how to use the module.
 
+
+## Dependencies
+
+This module depends on `libi2c-dev` which can be installed on debian by running `sudo apt-get install libi2c-dev`.
+
+
+## Building and running
+
 To compile main.c run:
 
 ```bash
