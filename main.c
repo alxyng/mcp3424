@@ -45,7 +45,6 @@ int main(int argc, char const **argv) {
 	mcp3424_set_conversion_mode(&j3, MCP3424_CONVERSION_MODE_CONTINUOUS);
 
 	while (1) {
-		printf("iteration: %u\n", iteration++);
 		for (i = 0; i < 4; i++) {
 			res[i] = mcp3424_get_raw(&j2, channels[i]);
 			if (j2.err) {
@@ -65,6 +64,7 @@ int main(int argc, char const **argv) {
 			v[i + 4] = MAP(res[i + 4], RAW_MIN, RAW_MAX_14, V_MIN, V_MAX);
 		}
 
+		printf("iteration: %u\n", iteration++);
 		for (i = 0; i < 8; i++) {
 			printf("res[%d] = %u, v[%d] = %0.2f\n", i, res[i], i, v[i]);
 		}
